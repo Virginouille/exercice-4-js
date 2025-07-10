@@ -54,6 +54,8 @@ function afficherMap() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    //Ajout marqueur
+    const marker = L.marker([46.5895424, 3.325952]).addTo(map);
 }
 
 window.addEventListener("load", obtenirGeolocalisation);
