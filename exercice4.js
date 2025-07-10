@@ -4,7 +4,7 @@
 
 //Obtenir la lattitude et la longitude
 
-function obtenirGeolocalisation() {
+function obtenirGeolocalisation(callback) {
     navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
@@ -12,6 +12,8 @@ function obtenirGeolocalisation() {
         console.log("Géolocalisation actuelle")
         console.log("Latitude : " + latitude);
         console.log("Longitude : " + longitude);
+
+        callback(latitude, longitude);
     },
         (error) => {
             console.log("Erreur de géolocalisation", error.message);
@@ -21,11 +23,28 @@ function obtenirGeolocalisation() {
 
 //Afficher les coordonnées dans le dom
 function afficherLocalisation() {
+
     const titreLoc = document.createElement("h1");
+    const txtLatitude = document.createElement("p");
+    const txtLongitude = document.createElement("p");
+
     titreLoc.id = "afficherloc";
-    document.body.appendChild(titreLoc);
-    window.addEventListener("load", obtenirGeolocalisation);
+    titreLoc.innerText = "Votre géolocalisation";
+
+    txtLatitude.id = "latitude";
+    txtLongitude.id = "longitude";
+
+    document.body.append(titreLoc, txtLatitude, txtLongitude);
+
+    //Récup de la fuction obtenir géoloc en récup le call back
+    obtenirGeolocalisation((latitude, longitude) => {
+
+        txtLatitude.innerHTML = `Latitude : ${latitude}`;
+        txtLongitude.innerHTML = `Longitude : ${longitude}`;
+    })
+
 }
 
-afficherLocalisation();
+window.addEventListener("load", afficherLocalisation);
+
 
