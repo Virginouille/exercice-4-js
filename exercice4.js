@@ -43,6 +43,22 @@ function afficherLocalisation() {
         txtLongitude.innerHTML = `Longitude : ${longitude}`;
     })
 
+    afficherMap(latitude, longitude);
+
+}
+
+//Mise en place d'une map
+function afficherMap() {
+
+    const map = L.map('map').setView([46.5895424, 3.325952], 13);
+
+    //Ajout calque de tuiles
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    return map;
 }
 
 window.addEventListener("load", afficherLocalisation);
