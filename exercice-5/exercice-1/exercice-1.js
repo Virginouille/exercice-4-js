@@ -1,11 +1,14 @@
 /**Au chargement du dom */
 document.addEventListener("DOMContentLoaded", () => {
+
+    const audio = document.getElementById("audio");
+    afficherTemps();
     play();
     pause();
     reinitialiser();
 });
 
-const audio = document.getElementById("audio");
+
 
 /**Fonction play */
 function play() {
@@ -38,3 +41,34 @@ function reinitialiser() {
         audio.load();
     })
 };
+
+/**Fonction afficher temps */
+function afficherTemps() {
+    const temps = document.getElementById("chrono");
+    const afficher = document.createElement("span");
+    temps.appendChild(afficher);
+
+    let interval = null;
+
+    audio.addEventListener("play", () => {
+        if (interval === null) {
+            interval = setInterval(() => {
+                const min = String(Math.floor(audio.currentTime / 60)).padStart(2, "0");
+                const sec = String(Math.floor(audio.currentTime % 60)).padStart(2, "0");
+                afficher.textContent = `${min}.${sec}`;
+
+            }, 1000);
+        }
+    });
+
+    audio.addEventListener("pause", () => {
+        clearInterval(interval);
+        interval = null;
+    });
+
+    audio.addEventListener("ended", () => {
+        clearInterval(interval);
+        interval = null;
+    });
+}
+
