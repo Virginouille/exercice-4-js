@@ -32,7 +32,7 @@ function copierChamp() {
 function afficherMessage() {
     const afficherConfirmation = document.createElement("p");
 
-    afficherConfirmation.textContent = "Texte copié";
+    afficherConfirmation.textContent = texte.value;
 
     document.body.appendChild(afficherConfirmation);
 }
