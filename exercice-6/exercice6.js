@@ -1,7 +1,9 @@
+document.addEventListener("DOMContentLoaded", lireFichier);
+const fichier = document.getElementById("fichier");
+const visuel = document.getElementById("visuel");
+
 /**File APi - charger une image*/
 function lireFichier() {
-    const fichier = document.getElementById("fichier");
-    const visuel = document.getElementById("visuel");
 
     fichier.addEventListener("change", () => {
         const file = fichier.files[0];
@@ -17,10 +19,19 @@ function lireFichier() {
 
             visuel.innerHTML = "";
             visuel.appendChild(image);
+            afficherNomFichier(file);
         });
 
         reader.readAsDataURL(file);
+
     });
 }
 
-document.addEventListener("DOMContentLoaded", lireFichier);
+function afficherNomFichier(file) {
+    const affichageTexte = document.createElement("p");
+    affichageTexte.textContent = `${file.name}`;
+    visuel.appendChild(affichageTexte);
+
+
+}
+
