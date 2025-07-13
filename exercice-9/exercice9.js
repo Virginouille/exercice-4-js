@@ -20,6 +20,7 @@ function copierChamp() {
             .then(() => {
                 console.log("texte copié");
                 afficherMessage();
+                desactiverBtn();
             })
             .catch((err) => {
                 console.log("Erreur de copie", err);
@@ -35,6 +36,19 @@ function afficherMessage() {
     afficherConfirmation.textContent = texte.value;
 
     document.body.appendChild(afficherConfirmation);
+
+    //Disparition du mot après deux secondes
+    setInterval(() => {
+        afficherConfirmation.textContent = "";
+    }, 2000);
+
+}
+
+/**Fonction qui desactive le bouton après le clic  */
+function desactiverBtn() {
+
+    btnCopier.disabled = true;
+
 }
 
 copierChamp();
