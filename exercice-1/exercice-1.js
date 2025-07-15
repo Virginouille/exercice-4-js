@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
 /**Fonction play */
 function play() {
 
@@ -57,7 +56,7 @@ function afficherTemps() {
                 const sec = String(Math.floor(audio.currentTime % 60)).padStart(2, "0");
                 afficher.textContent = `${min}.${sec}`;
 
-            }, 1000);
+            }, 100);
         }
     });
 
@@ -68,6 +67,7 @@ function afficherTemps() {
 
     audio.addEventListener("ended", () => {
         clearInterval(interval);
+        afficher.textContent = 0;
         interval = null;
     });
 }

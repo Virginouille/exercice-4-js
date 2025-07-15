@@ -40,7 +40,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
                 const barHeight = dataArray[i];
                 ctx.fillStyle = `rgb(${barHeight + 100}, 50, 200)`;
                 ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-                x += barWidth + 1;
+                x += barWidth;
             }
         }
 

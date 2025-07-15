@@ -31,7 +31,7 @@ function afficherNomFichier(file) {
     const affichageTexte = document.createElement("p");
     affichageTexte.textContent = `${file.name}`;
     visuel.appendChild(affichageTexte);
-
+    console.log(file);
 
 }
 
